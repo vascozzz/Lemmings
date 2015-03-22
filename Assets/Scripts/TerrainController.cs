@@ -11,7 +11,7 @@ public class TerrainController : MonoBehaviour
 	private float tileZ;
 
 	public float placementCooldown;
-	private float nextPlacement; 
+	private float nextPlacement;
 
 	public GameObject hoverPointer;
 	private bool canPlace;
