@@ -27,6 +27,7 @@ public class TerrainController : MonoBehaviour
 			Debug.Log("Cannot find 'Game Controller'.");
 		}
 
+		Debug.Log(transform.localScale.x);
 		tileX = transform.localScale.x / numTilesX;
 		tileZ = transform.localScale.y / numTilesZ; // y, not z, because the terrain is a quad (operates in x,y only)
 
