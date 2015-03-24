@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class LemmingController : MonoBehaviour
 {
 	public float speed;
+
 	private ToggleGroup actionBar;
 	private Rigidbody rigidBody;
 
@@ -14,20 +15,13 @@ public class LemmingController : MonoBehaviour
 		rigidBody = GetComponent<Rigidbody>();
 	}
 
-	void Update()
-	{
-
-	}
-
-	void FixedUpdate()
-	{
+	void FixedUpdate() {
 		Vector3 velocity = rigidBody.velocity;
 		velocity.z = speed;
 		rigidBody.velocity = velocity;
 	}
 
-	void OnMouseDown ()
-	{
+	void OnMouseDown() {
 		Toggle active = actionBar.ActiveToggles().FirstOrDefault();
 
 		switch (active.name) {
@@ -41,13 +35,11 @@ public class LemmingController : MonoBehaviour
 		}
 	}
 
-	private void action1()
-	{
+	private void action1() {
 		GetComponent<Rigidbody>().AddForce(Vector3.up * 500);
 	}
 
-	private void action2()
-	{
+	private void action2() {
 		transform.localScale = new Vector3(2, 2, 2);
 	}
 }

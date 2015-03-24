@@ -13,4 +13,9 @@ public class GameController : MonoBehaviour {
 	public GameObject GetRandomLemming() {
 		return lemmings[Random.Range(0, lemmings.Length)];
 	}
+
+	public void SpawnLemming(Vector3 position) {
+		GameObject lemming = GetRandomLemming();
+		Instantiate(lemming, position, Quaternion.identity);
+	}
 }

@@ -3,31 +3,20 @@ using System.Collections;
 
 public class TerrainController : MonoBehaviour 
 {
-	private GameController gameController;
-
 	public int numTilesX;
 	public int numTilesZ;
+	public GameObject hoverPointer;
+	public float placementCooldown;
+
+	private GameController gameController;
+	private float nextPlacement;
+	private bool canPlace;
 	private float tileX;
 	private float tileZ;
 
-	public float placementCooldown;
-	private float nextPlacement;
-
-	public GameObject hoverPointer;
-	private bool canPlace;
-
 	void Start() {
-		GameObject gameControllerObject = GameObject.Find("Game Controller");
-		
-		if (gameControllerObject != null) {
-			gameController = gameControllerObject.GetComponent<GameController>();
-		}
-		
-		if (gameController == null) {
-			Debug.Log("Cannot find 'Game Controller'.");
-		}
+		gameController = GameObject.Find("Game Controller").GetComponent<GameController>();
 
-		Debug.Log(transform.localScale.x);
 		tileX = transform.localScale.x / numTilesX;
 		tileZ = transform.localScale.y / numTilesZ; // y, not z, because the terrain is a quad (operates in x,y only)
 
@@ -38,7 +27,7 @@ public class TerrainController : MonoBehaviour
 
 	void Update() {
 		UpdateHover();
-		CreateLemming();
+		PlaceLemming();
 	}
 
 	void UpdateHover() {
@@ -67,10 +56,9 @@ public class TerrainController : MonoBehaviour
 		}
 	}
 
-	void CreateLemming() {
+	void PlaceLemming() {
 		if(Input.GetButton("Fire1") && canPlace && Time.time > nextPlacement) {
-			GameObject lemming = gameController.GetRandomLemming();
-			Instantiate(lemming, hoverPointer.transform.position, Quaternion.identity);
+			gameController.SpawnLemming(hoverPointer.transform.position);
 			nextPlacement = Time.time + placementCooldown;
 		}
 	}

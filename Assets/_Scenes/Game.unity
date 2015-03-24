@@ -365,7 +365,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.3599999
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
       propertyPath: m_LocalPosition.y
@@ -373,7 +373,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 3.33999991
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
       propertyPath: m_LocalRotation.x
@@ -381,7 +381,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
       propertyPath: m_LocalRotation.z
@@ -389,13 +389,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
       propertyPath: m_LocalRotation.w
-      value: -1.62920685e-07
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11401116, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &164562271
@@ -480,8 +481,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 280764314}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: -1.62920685e-07}
+  m_LocalPosition: {x: 2.3599999, y: 0, z: 3.33999991}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6340987}
@@ -2333,8 +2334,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numTilesX: 15
   numTilesZ: 15
-  placementCooldown: 1
   hoverPointer: {fileID: 126014, guid: e2116b0a4bb755b4daa47a5bb37384eb, type: 2}
+  placementCooldown: 1
 --- !u!23 &1982782814
 MeshRenderer:
   m_ObjectHideFlags: 0
