@@ -21,7 +21,7 @@ public class TerrainController : MonoBehaviour
 		tileZ = transform.localScale.y / numTilesZ; // y, not z, because the terrain is a quad (operates in x,y only)
 
 		hoverPointer = Instantiate(hoverPointer, new Vector3(0.0f, 0.0f, 0.0f), Quaternion.identity) as GameObject;
-		hoverPointer.transform.localScale = new Vector3(tileX, 1, tileZ);
+		hoverPointer.transform.localScale = new Vector3(tileX, 0.4f, tileZ);
 		canPlace = false;
 	}
 
