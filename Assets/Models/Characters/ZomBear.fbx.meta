@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: c236aa7ad6dcabe47abc7d2cf903ae71
+timeCreated: 1427302733
+licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
@@ -39,8 +41,8 @@ ModelImporter:
     100066: RightWristIK
     100068: Root
     100070: Spine
-    100072: Zombear
-    100074: //RootNode
+    100072: //RootNode
+    100074: Zombear
     400000: Ctrl_Grp
     400002: Head
     400004: HeadEnd
@@ -77,19 +79,19 @@ ModelImporter:
     400066: RightWristIK
     400068: Root
     400070: Spine
-    400072: Zombear
-    400074: //RootNode
+    400072: //RootNode
+    400074: Zombear
     4300000: Zombear
     9500000: //RootNode
     13700000: Zombear
   materials:
     importMaterials: 1
-    materialName: 1
+    materialName: 0
     materialSearch: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
-    optimizeGameObjects: 1
+    optimizeGameObjects: 0
     motionNodeName: 
     animationCompression: 1
     animationRotationError: .5
@@ -101,7 +103,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: .00999999978
+    globalScale: 1
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
@@ -115,7 +117,7 @@ ModelImporter:
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
-    useFileScale: 0
+    useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     splitTangentsAcrossUV: 1
