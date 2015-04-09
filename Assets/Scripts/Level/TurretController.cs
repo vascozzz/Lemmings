@@ -2,68 +2,59 @@
 using System.Collections;
 
 public class TurretController : MonoBehaviour {
+	
+	public GameObject CannonObj; // turret cannon gameobject
+	public GameObject barrelObj; // turret barrel gameobject
+	public GameObject terrainObj; // terrain gameobject
 
-	public float cooldown;
-	public int force;
-	public int rangeX;
-	public int rangeY;
-	public GameObject[] obstacles;
+	public float cooldown; // time before calculating a new target
+	public int force; // force at which to shoot
+	public float rotationSpeed; // speed at which to rotate turret
 
-	public GameObject CannonObj;
-	public GameObject barrelObj;
-	public GameObject terrainObj;
+	private Transform barrel; // turret barrel transform
+	private Transform cannon; // turret cannon transform (base of the turret)
+	private TerrainController terrainComp; // terrain script
 
-	private Transform barrel;
-	private Transform cannon;
-	private Transform terrain;
+	private Vector3 target; // turret aim
+	private float nextShoot; // time of the next shot (probably not necessary now?)
 
-	private float nextShoot;
+	public GameObject[] obstacles; // turret "bullets"
 
-	private Vector3 target;
-
-	// Use this for initialization
 	void Start () {
 		barrel = barrelObj.transform;
 		cannon = CannonObj.transform;
-		terrain = terrainObj.transform;
-
+		terrainComp = terrainObj.GetComponent<TerrainController>();
+		
+		GenerateTargetPosition();
 		nextShoot = Time.time + cooldown;
+	}
 
-		ChoosePosition ();
+	void Update () {
+		Quaternion targetRotation = Quaternion.LookRotation(target - cannon.position);
+		Quaternion currentRotation = cannon.rotation;
+
+		if (targetRotation == currentRotation && Time.time > nextShoot) {
+			Shoot ();
+			GenerateTargetPosition();
+		}
+		else {
+			cannon.rotation = Quaternion.RotateTowards(cannon.rotation, targetRotation, rotationSpeed);		
+		} 
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		if (Time.time > nextShoot)
-			Shoot ();
-		else
-			Rotate ();
+	private void GenerateTargetPosition() {
+		target = terrainComp.GetRandomPosition();
 	}
-
-	private void ChoosePosition() {
-		int x = Random.Range (0, rangeX);
-		int y = Random.Range (0, rangeY);
-
-		target = new Vector3 (terrain.position.x -x,
-		                      	terrain.position.y,
-		                      	terrain.position.z - y);
-	}
-
+	
 	private void Shoot() {
 		nextShoot = Time.time + cooldown;
-
+		
 		GameObject obstacle = obstacles[Random.Range(0, obstacles.Length)];
-
+		
 		obstacle = Instantiate (obstacle) as GameObject;
 		obstacle.transform.position = barrel.transform.position;
-		obstacle.GetComponent<Rigidbody> ().AddForce (cannon.transform.forward * force);
 
-		ChoosePosition ();
-	}
-
-	private void Rotate() {
-		//cannon.transform.Rotate(0, 2, 0);
-		cannon.Rotate (0, 1, 0, Space.Self);
-
+		Vector3 obstacleTarget = (target - obstacle.transform.position).normalized;
+		obstacle.GetComponent<ObstacleController>().SetTarget(target, obstacleTarget);
 	}
 }

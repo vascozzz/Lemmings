@@ -16,7 +16,7 @@ public class GameEndController : MonoBehaviour {
 	private Animator animtr;
 
 	void Awake() {
-		animtr.GetComponent<Animator> ();
+		animtr.GetComponent<Animator>();
 
 		gameObject.SetActive (false);
 	}
