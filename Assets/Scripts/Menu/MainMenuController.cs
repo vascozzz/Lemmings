@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public class MainMenuController : MonoBehaviour {
-
+public class MainMenuController : MonoBehaviour 
+{
 	public GameObject instrs;
 
 	public void Play() {
@@ -9,10 +9,10 @@ public class MainMenuController : MonoBehaviour {
 	}
 
 	public void ShowInstrs() {
-		instrs.SetActive (true);
+		instrs.SetActive(true);
 	}
 
 	public void Exit() {
-		Application.Quit ();
+		Application.Quit();
 	}
 }

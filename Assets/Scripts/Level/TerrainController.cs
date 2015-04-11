@@ -3,15 +3,17 @@ using System.Collections;
 
 public class TerrainController : MonoBehaviour 
 {
+	// public
 	public GameObject gameControllerObj; // game controller gameObject
 	public GameObject lane; // lane highlight gameObject
 
 	public int numTilesX; // length
 	public int numTilesY; // number of lanes
 
+	// private
 	private GameController gameController; // game controller gameObject
-	private float tileX;
-	private float tileY;
+	private float tileX; // x scale of each tile
+	private float tileY; // y scale of each tile
 	
 	void Awake() {
 		gameController = gameControllerObj.GetComponent<GameController>();
@@ -29,61 +31,65 @@ public class TerrainController : MonoBehaviour
 	
 	void PerformRayCast() {
 		GameObject lemming = LemmingController.selectedLemming;
+
 		if (lemming != null) {
-			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 			RaycastHit hit;
 
 			// launch raycast, check if terrain is hit
-			if(Physics.Raycast (ray, out hit, Mathf.Infinity)) {
+			if(Physics.Raycast(ray, out hit, Mathf.Infinity)) {
 
 				if (hit.collider.tag == "Terrain") {
 					float posY = hit.point.z / tileY;
-					posY = Mathf.Floor (posY);
+					posY = Mathf.Floor(posY);
 					float worldY = posY * tileY + (tileY / 2) - 0.1f; // 0.1 to pixel perfect
 
-					Vector3 pos = new Vector3 (0.0f, 0.1f, worldY);
+					Vector3 pos = new Vector3(0.0f, 0.1f, worldY);
 
 					lane.transform.position = pos;
-					lane.SetActive (true);
+					lane.SetActive(true);
 
 					PlaceLemming(lemming);
-				} else if(hit.collider.tag == "Lemming"){
-					lane.SetActive (false);
-				} else {
-					lane.SetActive (false);
+				} 
+				else if (hit.collider.tag == "Lemming"){
+					lane.SetActive(false);
+				} 
+				else {
+					lane.SetActive(false);
+
 					if(Input.GetButtonDown("Fire1"))
-						lemming.GetComponent<LemmingController> ().Deselect();
+						lemming.GetComponent<LemmingController>().Deselect();
 				}
-			} else {
-				lane.SetActive (false);
+			} 
+			else {
+				lane.SetActive(false);
 			}
 		}
 	}
 	
 	void PlaceLemming(GameObject lemming) {
 		if (Input.GetButtonDown("Fire1")) {
-			LemmingController lController = lemming.GetComponent<LemmingController> ();
+			LemmingController lController = lemming.GetComponent<LemmingController>();
 
-			gameController.RemoveFromSpawn (lController.GetSpawnIndex());
+			gameController.RemoveFromSpawn(lController.GetSpawnIndex());
 
 			lemming.transform.parent = transform;
-			lemming.transform.position = new Vector3 (7.0f, 0.1f, lane.transform.position.z);
+			lemming.transform.position = new Vector3(7.0f, 0.1f, lane.transform.position.z);
 
-			lController.StartRunning ();
-			lController.Deselect ();
+			lController.StartRunning();
+			lController.Deselect();
 
-			lane.SetActive (false);
+			lane.SetActive(false);
 		}
 	}
 
-	public Vector3 GetRandomPosition()
-	{
-		float rndTileX = Random.Range (0, numTilesX) - numTilesX/2f;
-		float rndTileY = Random.Range (0, numTilesY) - numTilesY/2f;
+	public Vector3 GetRandomPosition() {
+		float rndTileX = Random.Range(0, numTilesX) - numTilesX/2f;
+		float rndTileY = Random.Range(0, numTilesY) - numTilesY/2f;
 		
 		float rndX = (rndTileX * tileX) + (tileX/2f);
 		float rndY = (rndTileY * tileY) + (tileY/2f);
 		
-		return new Vector3(rndX, 0.2f, rndY);
+		return new Vector3(rndX, 0.5f, rndY); // with y = 0.0, box would touch floor before getting to position, so we need an offset
 	}
 }

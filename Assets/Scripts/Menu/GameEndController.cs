@@ -2,8 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class GameEndController : MonoBehaviour {
-
+public class GameEndController : MonoBehaviour 
+{
 	public Text resultText;
 	public Text scoreText;
 

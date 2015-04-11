@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GameController: MonoBehaviour {
-
+public class GameController: MonoBehaviour 
+{
 	// static
 	public static int lemmingsLeft; // lemmings left to spawn
 	public static int lemmingsSaved; // lemmings that reached the goal
@@ -40,14 +40,14 @@ public class GameController: MonoBehaviour {
 		gameEndScreen.SetActive (false);
 	}
 
-	void Start () {
+	void Start() {
 		InvokeRepeating("SpawnLemming", initialDelay, timeBetweenSpawn);
 	}
 
 	void Update() {
 		if (lemmingsLeft == 0 && GameObject.FindGameObjectsWithTag("Lemming").Length == 0) {
-				gameEndScreen.SetActive(true);
-				gameEndScreen.GetComponent<GameEndController> ().GameOver();
+			gameEndScreen.SetActive(true);
+			gameEndScreen.GetComponent<GameEndController>().GameOver();
 		}
 	}
 
@@ -65,7 +65,7 @@ public class GameController: MonoBehaviour {
 			                                         lemmingZPos);
 
 			lemmingsOnSpawn[index] = lemming;
-			lemming.GetComponent<LemmingController> ().SetSpawnIndex(index);
+			lemming.GetComponent<LemmingController>().SetSpawnIndex(index);
 
 			onSpawn++;
 			lemmingsLeft--;
@@ -81,7 +81,7 @@ public class GameController: MonoBehaviour {
 	}
 	
 	public void RemoveFromSpawn(int index) {
-		lemmingsOnSpawn [index] = null;
+		lemmingsOnSpawn[index] = null;
 		onSpawn--;
 	}
 }
