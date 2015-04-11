@@ -1,20 +1,15 @@
 ﻿using UnityEngine;
-using System.Collections;
 
-public class MainMenuManager : MonoBehaviour {
+public class MainMenuController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+	public GameObject instrs;
 
 	public void Play() {
 		Application.LoadLevel("Level1");
+	}
+
+	public void ShowInstrs() {
+		instrs.SetActive (true);
 	}
 
 	public void Exit() {

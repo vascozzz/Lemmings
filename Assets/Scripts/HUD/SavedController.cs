@@ -14,5 +14,11 @@ public class SavedController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		text.text = "Saved: " + GameController.lemmingsSaved;
+
+		// change color
+		if (GameController.lemmingsSaved >= GameController.lemmingsGoal)
+			text.color = Color.green;
+		else
+			text.color = Color.red;
 	}
 }

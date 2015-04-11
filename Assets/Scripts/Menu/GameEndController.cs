@@ -15,26 +15,11 @@ public class GameEndController : MonoBehaviour {
 
 	private Animator animtr;
 
-	void Awake() {
-		animtr.GetComponent<Animator>();
-
-		gameObject.SetActive (false);
-	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		//if(GameController.lemmingsLeft <= 0 && GameObject.FindWithTag("Lemming") == null) {
-
-		//}
-	}
-
 	public void NextLevel() {
-		// Application.LoadLevel (Application.loadedLevelName);
+		if(Application.loadedLevelName != "Level3") // if not level 3 load next
+			Application.LoadLevel (Application.loadedLevel + 1);
+		else // load main menu
+			Application.LoadLevel ("MainMenu");
 	}
 
 	public void Retry() {
@@ -47,5 +32,26 @@ public class GameEndController : MonoBehaviour {
 
 	public void Exit() {
 		Application.Quit ();
+	}
+
+	public void GameOver() {
+		animtr = GetComponent<Animator>();
+
+		// set information
+		bool win = GameController.lemmingsSaved >= GameController.lemmingsGoal;
+
+		if (win) {
+			resultText.text = "Great! You won!";
+			scoreText.text = "Score: " + ((double) GameController.lemmingsSaved / (double) GameController.lemmingsTotal) * 100 + "%";
+			if(Application.loadedLevelName == "Level3")
+				next.gameObject.SetActive(false);
+		} else {
+			resultText.text = "You have failed!";
+			scoreText.gameObject.SetActive(false);
+			next.gameObject.SetActive(false);
+		}
+
+		// set trigger
+		animtr.SetTrigger ("GameEnd");
 	}
 }

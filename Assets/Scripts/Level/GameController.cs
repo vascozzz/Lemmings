@@ -7,6 +7,7 @@ public class GameController: MonoBehaviour {
 	public static int lemmingsLeft; // lemmings left to spawn
 	public static int lemmingsSaved; // lemmings that reached the goal
 	public static int lemmingsGoal; // lemmings goal
+	public static int lemmingsTotal; // initial lemmings left
 
 	// public
 	public int maxLemmings; // lemmings that will be spawned in the level
@@ -21,21 +22,33 @@ public class GameController: MonoBehaviour {
 	public GameObject[] lemmingsPrefabs; // lemmings gameobjects
 	public GameObject spawn; // spawn gameobject
 
+	public GameObject gameEndScreen; // gameEndScreen gameobject
+
 	// private
 	private Transform spawnTransform; // transform of spawn
 	private int onSpawn; // lemmings that are on spawn zone
 	private GameObject[] lemmingsOnSpawn;
 
 	void Awake() {
-		lemmingsLeft = maxLemmings;
+		lemmingsTotal = lemmingsLeft = maxLemmings;
 		spawnTransform = spawn.transform;
 		onSpawn = 0;
 		lemmingsOnSpawn = new GameObject[maxOnSpawn];
 		lemmingsGoal = goal;
+		lemmingsSaved = 0;
+
+		gameEndScreen.SetActive (false);
 	}
 
 	void Start () {
 		InvokeRepeating("SpawnLemming", initialDelay, timeBetweenSpawn);
+	}
+
+	void Update() {
+		if (lemmingsLeft == 0 && GameObject.FindGameObjectsWithTag("Lemming").Length == 0) {
+				gameEndScreen.SetActive(true);
+				gameEndScreen.GetComponent<GameEndController> ().GameOver();
+		}
 	}
 
 	public void SpawnLemming() {
