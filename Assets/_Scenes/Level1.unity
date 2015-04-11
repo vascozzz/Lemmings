@@ -44,7 +44,7 @@ LevelGameManager:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 5
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_LightmapsMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -114,7 +114,7 @@ Transform:
   m_Children:
   - {fileID: 279215709}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &29368932
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,7 +696,7 @@ Transform:
   - {fileID: 963254896}
   - {fileID: 1262340153}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
 --- !u!1 &279215707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1508,7 +1508,7 @@ Transform:
   - {fileID: 193579791}
   - {fileID: 422768170}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
 --- !u!1 &669039530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1740,7 +1740,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 468244, guid: a3517302d180da6459ddd6730b3c962c, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a3517302d180da6459ddd6730b3c962c, type: 2}
@@ -2037,7 +2037,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481698, guid: bb353151e191b794e88eaed883153cbe, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 11482956, guid: bb353151e191b794e88eaed883153cbe, type: 2}
       propertyPath: terrainObj
@@ -2091,6 +2091,14 @@ Prefab:
       propertyPath: cooldown
       value: 1.20000005
       objectReference: {fileID: 0}
+    - target: {fileID: 11482956, guid: bb353151e191b794e88eaed883153cbe, type: 2}
+      propertyPath: obstacles.Array.data[0]
+      value: 
+      objectReference: {fileID: 127064, guid: 22d12373b1b6e3b4bbb1a16bea12da47, type: 2}
+    - target: {fileID: 11482956, guid: bb353151e191b794e88eaed883153cbe, type: 2}
+      propertyPath: box
+      value: 
+      objectReference: {fileID: 127064, guid: 22d12373b1b6e3b4bbb1a16bea12da47, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb353151e191b794e88eaed883153cbe, type: 2}
   m_IsPrefabParent: 0
@@ -2638,7 +2646,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!82 &1511898612
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3056,6 +3064,7 @@ MonoBehaviour:
   lemmingsPrefabs:
   - {fileID: 100000, guid: 009f96f22679ce540b11e986f47e245a, type: 2}
   - {fileID: 100002, guid: 5597c84b1851cf54c83c5281d37035e8, type: 2}
+  - {fileID: 100000, guid: 6fd694fb865e5524486da2da372b9730, type: 2}
   spawn: {fileID: 963254892}
   gameEndScreen: {fileID: 1656198370}
 --- !u!4 &1840800017
@@ -3069,7 +3078,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &1842107703
 GameObject:
   m_ObjectHideFlags: 0
@@ -3227,33 +3236,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1903945775}
---- !u!1 &1970297875
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1970297876}
-  m_Layer: 0
-  m_Name: Obstacles
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1970297876
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1970297875}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
 --- !u!1 &2014566157
 GameObject:
   m_ObjectHideFlags: 0
