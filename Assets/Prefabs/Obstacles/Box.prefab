@@ -106,6 +106,8 @@ MonoBehaviour:
   obstacleTypes:
   - {fileID: 190568, guid: 387c60bedc670554b865b3b554f532e3, type: 2}
   - {fileID: 187402, guid: fd19e76fc98b4a34fb1a4445689e04df, type: 2}
+  - {fileID: 127596, guid: bd02328d7a30f044f9f7be401bbc31fe, type: 2}
+  - {fileID: 103366, guid: 48337eabc56245645badb264e0458e84, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

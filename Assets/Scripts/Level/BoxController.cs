@@ -24,13 +24,13 @@ public class BoxController : MonoBehaviour
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Terrain") {
-			Destroy(this.gameObject);
-
 			GameObject newType = obstacleTypes[Random.Range(0, obstacleTypes.Length)];
 			GameObject newObstacle = Instantiate(newType) as GameObject;
 
 			newObstacle.transform.position = new Vector3(target.x, 0.0f, target.z); // once we're at the correct position, we should get rid of the y offset
-			//newObstacle.GetComponent<TrampolineController>().SetTarget(target);
+			newObstacle.GetComponent<ObstacleController>().SetTarget(target);
+
+			Destroy(this.gameObject);
 		}
 	}
 

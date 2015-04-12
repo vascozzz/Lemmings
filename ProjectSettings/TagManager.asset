@@ -9,6 +9,12 @@ TagManager:
   - Hover
   - Turret
   - Barrel
+  - Obstacle
+  - Bullet
+  - Shield
+  - Vidal
+  - Trampoline
+  - Hole
   layers:
   - Default
   - TransparentFX

@@ -23,7 +23,7 @@ public class ActionBarController : MonoBehaviour {
 				action = 5;
 			}
 
-			this.gameObject.transform.GetChild(action - 1).gameObject.GetComponent<Toggle> ().isOn = true;
+			this.gameObject.transform.GetChild(action - 1).gameObject.GetComponent<Toggle>().isOn = true;
 		}
 	}
 

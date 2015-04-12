@@ -14,33 +14,55 @@ public class LemmingController : MonoBehaviour
 	public Color highlightedColor = new Color(0.117f, 1.0f, 0.0f, 1.0f);
 
 	// private
-	private int spawnIndex; // index in spawn
+	protected int spawnIndex; // index in spawn
 
-	private ToggleGroup actionBar;
-	private Rigidbody rigidBody; // rigid body component
+	protected ToggleGroup actionBar;
+	protected Rigidbody rigidBody; // rigid body component
 	
-	private Material mat; // material
-	private Color rimColor; // default rim color
+	protected Material mat; // material
+	protected Color rimColor; // default rim color
 
-	private bool running; // if it is running, it is on terrain
-	private bool selected; // if it is selected
+	protected bool running; // if it is running, it is on terrain
+	protected bool selected; // if it is selected
+	protected bool falling; // if it is falling (-y velocity)
 
-	private Animator animtr;
+	protected Animator animtr;
 
-	void Start() {
+	// abilities
+	public GameObject umbrella; // umbrella object spawned on ability use
+	protected GameObject umbrellaObj; // instance of spawned umbrella so it can be destroyed at any time
+	protected bool usedUmbrella; // if the umbrella ability has been used
+
+	public GameObject shield;
+	protected GameObject shieldObj;
+	protected bool usedShield;
+
+	public GameObject explosion;
+	protected bool usedExplosion;
+
+	protected virtual void Awake() {
 		rigidBody = GetComponent<Rigidbody>();
 		GameObject child = (GameObject) transform.GetChild(1).gameObject;
-		mat = child.GetComponent<Renderer>().materials [0];
+		mat = child.GetComponent<Renderer>().materials[0];
 		rimColor = mat.GetColor("_RimColor");
 		running = false;
 		animtr = GetComponent<Animator>() as Animator;
 	}
 
-	void FixedUpdate() {
+	protected virtual void Start() {
+
+	}
+
+	protected virtual void FixedUpdate() {
 		if (running) {
 			Vector3 velocity = rigidBody.velocity;
 			velocity.x = -speed;
 			rigidBody.velocity = velocity;
+		}
+
+		// should reach at least this velocity to be considered falling (excludes small bumps, placing of lemmings on terrain)
+		if (rigidBody.velocity.y < -5) { 
+			falling = true;
 		}
 	}
 
@@ -52,25 +74,76 @@ public class LemmingController : MonoBehaviour
 		}
 	}
 
-	void OnMouseEnter() {
+	protected virtual void OnMouseEnter() {
 		HighLight();
 	}
 
-	void OnMouseExit() {
+	protected virtual void OnMouseExit() {
 		if (!selected)
 			RemoveHighLight();
 	}
-	
-	void Action1() {
-		GetComponent<Rigidbody>().AddForce(new Vector3(-1.0f, 1.0f, 0.0f) * 500);
+
+	protected virtual void OnCollisionEnter(Collision collision) {
+		if (falling && !usedUmbrella) {
+			Kill();
+		}
+		
+		usedUmbrella = false;
+
+		if (umbrellaObj != null) {
+			Destroy(umbrellaObj);
+		}
 	}
 	
-	void Action2() {
-		transform.localScale = new Vector3(2, 2, 2);
+	protected virtual void Action1() {
+		// really shouldn't be using magic numbers, but lacking time right now
+		// min z: -8, max z: 8, diff between lanes: 2
+
+		if (rigidBody.velocity.y > 1 || rigidBody.velocity.y < -1) {
+			return;
+		}
+
+		else if (transform.position.z > 8) {
+			transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - 2);
+		} 
+		else if (transform.position.z < -8) {
+			transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + 2);
+		} 
+		else {
+			float change = Random.Range(0, 2) == 0 ? 2f : -2f;
+			transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + change);
+		}
 	}
 	
-	void Action3() {
-		// transform.localScale = new Vector3(5, 5, 5);
+	protected virtual void Action2() {
+		if (!usedUmbrella) {
+			usedUmbrella = true;
+			umbrellaObj = Instantiate(umbrella) as GameObject;
+			umbrellaObj.transform.parent = transform;
+			umbrellaObj.transform.localPosition = new Vector3(0f, 0f, 0f);
+		}
+	}
+	
+	protected virtual void Action3() {
+		if (!usedShield) {
+			usedShield = true;
+			shieldObj = Instantiate(shield) as GameObject;
+			shieldObj.transform.parent = transform;
+			shieldObj.transform.localPosition = new Vector3(0f, 0.7f, 0.51f);
+		}
+	}
+
+	protected virtual void Action4() {
+		if (!usedExplosion) {
+			usedExplosion = true;
+			GameObject explosionObj = Instantiate(explosion) as GameObject;
+			explosionObj.transform.position = transform.position;
+			Destroy(this.gameObject);
+		}
+	}
+
+	protected virtual void Action5() {
+		
 	}
 	
 	public void StartRunning() {
@@ -114,9 +187,28 @@ public class LemmingController : MonoBehaviour
 		spawnIndex = i;
 	}
 
-	public void Kill() {
+	public virtual void Kill() {
 		running = false;
 		animtr.SetTrigger("Death");
+		GetComponent<AudioSource>().Play();
+
+		if (umbrellaObj != null) {
+			Destroy(umbrellaObj);
+		}
+
+		if (shieldObj != null) {
+			Destroy(shieldObj);
+		}
+
 		Destroy(this.gameObject, 2);
+	}
+
+	public virtual void Jump(float jumpForce) {
+		gameObject.GetComponent<Rigidbody>().AddForce(new Vector3(-1.0f, 1.0f, 0.0f) * jumpForce);
+	}
+
+	public virtual void FallThrough() {
+		GetComponent<Collider>().isTrigger = true;
+		Kill();
 	}
 }

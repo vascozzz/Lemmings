@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class TurretController : MonoBehaviour 
 {
 	// static
-	public static List<Vector3> filledTiles;
+	static List<Vector3> filledTiles;
 
 	// public
 	public GameObject CannonObj; // turret cannon gameobject
@@ -71,5 +71,9 @@ public class TurretController : MonoBehaviour
 
 		Vector3 obstacleTarget = (target - newBox.transform.position).normalized;
 		newBox.GetComponent<BoxController>().SetTarget(target, obstacleTarget);
+	}
+
+	public static void RemoveFilledTile(Vector3 tile) {
+		filledTiles.Remove(tile);
 	}
 }

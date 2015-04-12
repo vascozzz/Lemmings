@@ -1,22 +1,32 @@
 fileFormatVersion: 2
-guid: 62e2a84c77f32d949be00d1616216244
-timeCreated: 1428763287
+guid: decf356eb191b79499b48376575a5409
+timeCreated: 1428836413
 licenseType: Free
 ModelImporter:
   serializedVersion: 18
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: ID17
-    100004: Killer
-    400000: //RootNode
-    400002: ID17
-    400004: Killer
-    2300000: ID17
-    2300002: Killer
-    3300000: ID17
-    3300002: Killer
-    4300000: ID17
-    4300002: Killer
+    100000: lambert29_v001
+    100002: lambert30_v001
+    100004: lambert32_v001
+    100006: lambert33_v001
+    100008: //RootNode
+    400000: lambert29_v001
+    400002: lambert30_v001
+    400004: lambert32_v001
+    400006: lambert33_v001
+    400008: //RootNode
+    2300000: lambert29_v001
+    2300002: lambert30_v001
+    2300004: lambert32_v001
+    2300006: lambert33_v001
+    3300000: lambert29_v001
+    3300002: lambert30_v001
+    3300004: lambert32_v001
+    3300006: lambert33_v001
+    4300000: lambert29_v001
+    4300002: lambert30_v001
+    4300004: lambert32_v001
+    4300006: lambert33_v001
   materials:
     importMaterials: 1
     materialName: 0
