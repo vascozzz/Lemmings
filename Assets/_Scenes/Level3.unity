@@ -3230,7 +3230,7 @@ Prefab:
       objectReference: {fileID: 1722247787}
     - target: {fileID: 11482956, guid: bb353151e191b794e88eaed883153cbe, type: 2}
       propertyPath: cooldown
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb353151e191b794e88eaed883153cbe, type: 2}
@@ -4489,7 +4489,7 @@ MonoBehaviour:
   lane: {fileID: 122688, guid: f8bb3fac96f97ac42a8226642b75e5be, type: 2}
   numTilesX: 10
   numTilesY: 10
-  numProtectedCols: 5
+  numProtectedCols: 3
 --- !u!1 &1723529992
 GameObject:
   m_ObjectHideFlags: 0
@@ -4735,9 +4735,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e06fa1d81244b70488342ed6ed1f8d24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLemmings: 10
+  maxLemmings: 30
   maxOnSpawn: 10
-  goal: 5
+  goal: 28
   initialDelay: 1
   timeBetweenSpawn: 2
   spawnStartPos: 7.19999981

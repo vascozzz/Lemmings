@@ -9,7 +9,7 @@ public class TerrainController : MonoBehaviour
 
 	public int numTilesX; // length
 	public int numTilesY; // number of lanes
-	public int numProtectedRows; // number of lanes near spawn where obstacles can't spawn
+	public int numProtectedCols; // number of lanes near spawn where obstacles can't spawn
 
 	// private
 	private GameController gameController; // game controller gameObject
@@ -85,12 +85,12 @@ public class TerrainController : MonoBehaviour
 	}
 
 	public Vector3 GetRandomPosition() {
-		float rndTileX = Random.Range(0, numTilesX - numProtectedRows) - numTilesX/2f;
+		float rndTileX = Random.Range(0, numTilesX - numProtectedCols) - numTilesX/2f;
 		float rndTileY = Random.Range(0, numTilesY) - numTilesY/2f;
 		
 		float rndX = (rndTileX * tileX) + (tileX/2f);
 		float rndY = (rndTileY * tileY) + (tileY/2f);
-		
+
 		return new Vector3(rndX, 0.5f, rndY); // with y = 0.0, box would touch floor before getting to position, so we need an offset
 	}
 }

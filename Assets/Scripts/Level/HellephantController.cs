@@ -40,6 +40,8 @@ public class HellephantController : LemmingController
 	}
 
 	protected override void Action5() {
+		usedUltimate = true;
+
 		rage = true;
 		rageStartTime = Time.time;
 		mat.SetColor("_RimColor", rageColor);

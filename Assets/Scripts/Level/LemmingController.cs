@@ -7,6 +7,7 @@ public class LemmingController : MonoBehaviour
 {
 	// static
 	public static GameObject selectedLemming; // select lemming
+	public static float[] abilitiesCooldown = { 1.0f, 1.0f, 1.0f, 1.0f, 1.0f };
 
 	// public
 	public float speed; // speed of the lemming
@@ -25,6 +26,9 @@ public class LemmingController : MonoBehaviour
 	protected bool running; // if it is running, it is on terrain
 	protected bool selected; // if it is selected
 	protected bool falling; // if it is falling (-y velocity)
+	protected bool usedUltimate;
+
+	public bool countSaved; // differ for bear ultimate
 
 	protected Animator animtr;
 
@@ -47,6 +51,8 @@ public class LemmingController : MonoBehaviour
 		rimColor = mat.GetColor("_RimColor");
 		running = false;
 		animtr = GetComponent<Animator>() as Animator;
+		countSaved = true;
+		usedUltimate = false;
 	}
 
 	protected virtual void Start() {
@@ -70,7 +76,12 @@ public class LemmingController : MonoBehaviour
 		if (!running && !selected)
 			Select();
 		else if (!selected) {
-			Invoke("Action" + ActionBarController.action, 0.0f);
+			if(abilitiesCooldown[ActionBarController.action - 1] == 1.0f) {
+				if(ActionBarController.action != 5 || !usedUltimate) {
+					abilitiesCooldown [ActionBarController.action - 1] = 0.0f;
+					Invoke("Action" + ActionBarController.action, 0.0f);
+				}
+			}
 		}
 	}
 
@@ -96,7 +107,6 @@ public class LemmingController : MonoBehaviour
 	}
 	
 	protected virtual void Action1() {
-		// really shouldn't be using magic numbers, but lacking time right now
 		// min z: -8, max z: 8, diff between lanes: 2
 
 		if (rigidBody.velocity.y > 1 || rigidBody.velocity.y < -1) {

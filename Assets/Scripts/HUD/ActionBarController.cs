@@ -10,6 +10,15 @@ public class ActionBarController : MonoBehaviour {
 	}
 
 	void Update() {
+		for (int i = 0; i < 5; i++) {
+			if(LemmingController.abilitiesCooldown [i] < 1.0f)
+				LemmingController.abilitiesCooldown [i] += Time.deltaTime;
+			else
+				LemmingController.abilitiesCooldown [i] = 1.0f;
+
+			gameObject.transform.GetChild(5 + i).gameObject.GetComponent<Slider>().value = LemmingController.abilitiesCooldown [i];
+		}
+
 		if (Input.anyKeyDown) {
 			if (Input.GetKeyDown ("1")) {
 				action = 1;

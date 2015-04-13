@@ -103,7 +103,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 124230}
-  m_LocalRotation: {x: 0, y: .50000006, z: 0, w: .866025388}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -154,7 +154,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167878}
-  m_LocalRotation: {x: -4.32977997e-17, y: .707106709, z: .707106829, w: -4.32978063e-17}
+  m_LocalRotation: {x: .70710659, y: 0, z: 0, w: -.707106948}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -166,7 +166,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 114270}
-  m_LocalRotation: {x: 0, y: .258819073, z: 0, w: .965925813}
+  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
   m_LocalPosition: {x: -10, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -278,15 +278,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 061ac082ad2924f4ebf49ca6f780b7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 1
-  force: 300
-  rangeX: 5
-  rangeY: 10
-  obstacles:
-  - {fileID: 156476, guid: f469a68b7c8678e418e96ede9e673592, type: 2}
   CannonObj: {fileID: 124230}
   barrelObj: {fileID: 189534}
   terrainObj: {fileID: 0}
+  cooldown: 2
+  force: 1200
+  rotationSpeed: 2
+  box: {fileID: 127064, guid: 22d12373b1b6e3b4bbb1a16bea12da47, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

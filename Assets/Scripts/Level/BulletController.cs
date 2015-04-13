@@ -18,16 +18,18 @@ public class BulletController : ObstacleController
 
 	void OnTriggerEnter(Collider other) {
 		if (other.tag == "Shield") {
-			Destroy(other.gameObject);
+			Destroy (other.gameObject);
 
-			Dispose();
-			Destroy(this.gameObject);
-		}
-		else if (other.tag == "Lemming") {
-			other.gameObject.GetComponent<LemmingController>().Kill();
+			Dispose ();
+			Destroy (this.gameObject);
+		} else if (other.tag == "Lemming") {
+			other.gameObject.GetComponent<LemmingController> ().Kill ();
 			
-			Dispose();
-			Destroy(this.gameObject);
+			Dispose ();
+			Destroy (this.gameObject);
+		} else if (other.tag == "Vidal") {
+			Dispose ();
+			Destroy (this.gameObject);
 		}
 	}
 }

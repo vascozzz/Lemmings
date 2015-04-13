@@ -41,8 +41,10 @@ public class GameEndController : MonoBehaviour
 		bool win = GameController.lemmingsSaved >= GameController.lemmingsGoal;
 
 		if (win) {
+			double score = ((double) GameController.lemmingsSaved / (double) GameController.lemmingsTotal) * 100;
+			if(score > 100) score = 100;
 			resultText.text = "Great! You won!";
-			scoreText.text = "Score: " + ((double) GameController.lemmingsSaved / (double) GameController.lemmingsTotal) * 100 + "%";
+			scoreText.text = "Score: " + score + "%";
 			if(Application.loadedLevelName == "Level3")
 				next.gameObject.SetActive(false);
 		} else {

@@ -53,10 +53,9 @@ public class TurretController : MonoBehaviour
 					yield return null;
 
 				filledTiles.Add(target);
-
 			}
 			else {
-				cannon.rotation = Quaternion.RotateTowards(cannon.rotation, targetRotation, rotationSpeed);		
+				cannon.rotation = Quaternion.RotateTowards(cannon.rotation, targetRotation, rotationSpeed / cooldown);	
 			} 
 
 			yield return null;
